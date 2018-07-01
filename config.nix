@@ -30,6 +30,10 @@
     #   inherit (pkgs) stdenv;
     # };
 
+    bazel = bazel.override {
+      version = "0.14.1";
+    };
+
     all = with pkgs; buildEnv {
       name = "all";
 
@@ -63,6 +67,7 @@
         neovim
 
         # development tools
+        bazel
         gcc
         git
         git-crypt
