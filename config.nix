@@ -37,11 +37,24 @@
         # core
         bash
 
+        # nix helpers
+        nix-prefetch-scripts
+        nix-repl
+        nixops
+        nixpkgs-lint
+        nox
+        patchelf
+        patchutils
+
         # utilities
-        unzip
-        gnupg
-        tmux
         docker
+        gnupg
+        httpie
+        inotify-tools
+        jq
+        tmux
+        tree
+        unzip
         virtualbox
 
         libu2f-host # support for Yubikey on Chromium
@@ -50,34 +63,34 @@
         neovim
 
         # development tools
+        gcc
         git
         git-crypt
-        jdk
         gnumake
-        gcc
-        rake
-        nodejs-8_x yarn
         go dep
+        jdk
+        nodejs-8_x yarn
         python2Full
         python3Full
+        rake
 
         # networking tools
+        curl
         mosh
         ncat
         wget
-        curl
 
         # i3 and helpers
-        xcape
         i3blocks
         i3status
-        termite # My favorite shell
-        xss-lock
+        rofi
+        termite
+        xcape
+        xorg.xbacklight
         xorg.xdpyinfo
         xorg.xmodmap
-        rofi
-        xorg.xbacklight
         xsel
+        xss-lock
 
         # Applications
         chromium
