@@ -30,9 +30,13 @@
     #   inherit (pkgs) stdenv;
     # };
 
-    bazel = bazel.override {
+    bazel14 = bazel.overrideAttrs (oldAttrs: rec {
       version = "0.14.1";
-    };
+      src = fetchurl {
+        url = "https://github.com/bazelbuild/bazel/releases/download/${version}/bazel-${version}-dist.zip";
+        sha256 = "0980zd7w2bbk6x7rjbvkdfkc31dzv600lvqf35x7mbhq4vcdr76l";
+      };
+    });
 
     all = with pkgs; buildEnv {
       name = "all";
@@ -67,7 +71,7 @@
         neovim
 
         # development tools
-        bazel
+        bazel14
         gcc
         git
         git-crypt
