@@ -30,11 +30,22 @@
     #   inherit (pkgs) stdenv;
     # };
 
-    bazel14 = bazel.overrideAttrs (oldAttrs: rec {
+    bazel_0_14_1 = bazel.overrideAttrs (oldAttrs: rec {
       version = "0.14.1";
       src = fetchurl {
         url = "https://github.com/bazelbuild/bazel/releases/download/${version}/bazel-${version}-dist.zip";
+        # nix-prefetch-url --unpack https://github.com/bazelbuild/bazel/releases/download/0.14.1/bazel-0.14.1-dist.zip
         sha256 = "0980zd7w2bbk6x7rjbvkdfkc31dzv600lvqf35x7mbhq4vcdr76l";
+      };
+    });
+
+    minikube_0_25_2 = minikube.overrideAttrs (oldAttrs: rec {
+      version = "0.25.2";
+      src = fetchFromGitHub {
+        owner  = "kubernetes";
+        repo   = "minikube";
+        rev    = "v${version}";
+        sha256 = "1h8sxs6xxmli7xkb33kdl4nyn1sgq2b8b2d6aj5wim11ric3l7pb";
       };
     });
 
@@ -71,13 +82,14 @@
         neovim
 
         # development tools
-        bazel14
+        bazel_0_14_1
         gcc
         git
         git-crypt
         gnumake
         go dep
         jdk
+        minikube_0_25_2
         nodejs-8_x yarn
         python2Full
         python3Full
