@@ -3,7 +3,7 @@
 buildGoPackage rec {
   pname = "docker-machine-kvm2";
   name = "${pname}-${version}";
-  version = "0.25.2";
+  version = "0.28.0";
 
   goPackagePath = "k8s.io/minikube";
   subPackages = [ "cmd/drivers/kvm" ];
@@ -12,7 +12,7 @@ buildGoPackage rec {
     owner = "kubernetes";
     repo = "minikube";
     rev = "v${version}";
-    sha256 = "1h8sxs6xxmli7xkb33kdl4nyn1sgq2b8b2d6aj5wim11ric3l7pb";
+    sha256 = "1gm61w0f33mdax6im42wckfmjgdr5pziiaw2n7yj6jfjrxjnmzmf";
   };
 
   nativeBuildInputs = [ pkgconfig ];
