@@ -8,7 +8,7 @@
 
   chromium = {
     enablePepperFlash = true;
-    enablePepperPDF = true;
+    commandLineArgs = "--force-device-scale-factor=2";
   };
 
   packageOverrides = pkgs_: with pkgs_; {
@@ -29,6 +29,10 @@
     # elixir-config = import ./elixir-config {
     #   inherit (pkgs) stdenv;
     # };
+
+    docker-machine-kvm2 = import ./docker-machine-kvm2 {
+      inherit (pkgs) stdenv buildGoPackage fetchFromGitHub libvirt pkgconfig;
+    };
 
     bazel_0_14_1 = bazel.overrideAttrs (oldAttrs: rec {
       version = "0.14.1";
@@ -61,6 +65,19 @@
       };
     });
 
+    kubectl_1_9_4 = kubectl.overrideAttrs (oldAttrs: rec {
+      version = "1.9.4";
+
+      src = fetchFromGitHub {
+        owner = "kubernetes";
+        repo = "kubernetes";
+        rev = "v${version}";
+        sha256 = "00abs626rhgz5l2ij8jbyws4g3lnb9ipima1q83q0nlj7ksaqz7d";
+      };
+
+      patches = [];
+    });
+
     # TODO: this is not working
     # helm_2_9_0 = helm.overrideAttrs (oldAttrs: rec {
     #   version = "2.9.0";
@@ -89,6 +106,7 @@
         # utilities
         gist
         gnupg
+        htop
         httpie
         inotify-tools
         jq
@@ -98,6 +116,10 @@
         tree
         unzip
         virtualbox
+
+        docker-machine-kvm2 # required by Minikube vm-driver kvm2
+
+        qemu
 
         libu2f-host # support for Yubikey on Chromium
 
@@ -112,6 +134,7 @@
         gnumake
         go dep
         jdk
+        kubectl_1_9_4
         minikube_0_25_2
         nodejs-8_x yarn
         python2Full
