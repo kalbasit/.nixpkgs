@@ -78,14 +78,13 @@
       patches = [];
     });
 
-    # TODO: this is not working
-    # helm_2_9_0 = helm.overrideAttrs (oldAttrs: rec {
-    #   version = "2.9.0";
-    #   src = fetchurl {
-    #     url = "https://kubernetes-helm.storage.googleapis.com/helm-v${version}-linux-amd64.tar.gz";
-    #     sha256 = "0bnjpiivhsxhl45ab32vzf6crv4z8nbq5kcjkvlbcbswdbgp0pq6";
-    #   };
-    # });
+    helm_2_9_0 = kubernetes-helm.overrideAttrs (oldAttrs: rec {
+      version = "2.9.0";
+      src = fetchurl {
+        url = "https://kubernetes-helm.storage.googleapis.com/helm-v${version}-linux-amd64.tar.gz";
+        sha256 = "0bnjpiivhsxhl45ab32vzf6crv4z8nbq5kcjkvlbcbswdbgp0pq6";
+      };
+    });
 
     all = with pkgs; buildEnv {
       name = "all";
@@ -140,7 +139,7 @@
         python2Full
         python3Full
         rake
-        helm
+        helm_2_9_0
 
         # networking tools
         curl
