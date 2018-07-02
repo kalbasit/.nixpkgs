@@ -43,28 +43,6 @@
       };
     });
 
-    minikube_0_25_2 = minikube.overrideAttrs (oldAttrs: rec {
-      localkube-version = "1.9.4";
-
-      localkube-binary = fetchurl {
-        url = "https://storage.googleapis.com/minikube/k8sReleases/v${localkube-version}/localkube-linux-amd64";
-        sha256 = "0c1n8p7q38hx864xvcsr01d028cizjfpsqbfpf1y24fnrpzacajw";
-      };
-
-      version = "0.25.2";
-
-      name = "minikube-${version}";
-
-      preBuild = builtins.replaceStrings [oldAttrs.version] [version] oldAttrs.preBuild;
-
-      src = fetchFromGitHub {
-        owner  = "kubernetes";
-        repo   = "minikube";
-        rev    = "v${version}";
-        sha256 = "1h8sxs6xxmli7xkb33kdl4nyn1sgq2b8b2d6aj5wim11ric3l7pb";
-      };
-    });
-
     kubectl_1_9_4 = kubectl.overrideAttrs (oldAttrs: rec {
       version = "1.9.4";
 
@@ -134,7 +112,9 @@
         go dep
         jdk
         kubectl_1_9_4
-        minikube_0_25_2
+
+        "minikube-0.25.2"
+
         nodejs-8_x yarn
         python2Full
         python3Full
