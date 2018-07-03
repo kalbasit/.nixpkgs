@@ -30,44 +30,16 @@
     #   inherit (pkgs) stdenv;
     # };
 
-    docker-machine-kvm2 = import ./docker-machine-kvm2 {
-      inherit (pkgs) stdenv buildGoPackage fetchFromGitHub libvirt pkgconfig;
-    };
-
-    # bazel = import ./bazel {
-    #   inherit (pkgs) stdenv lib fetchurl jdk zip unzip bash writeScriptBin coreutils makeWrapper which python gnused libcxx CoreFoundation CoreServices Foundation;
-    # };
-
-    bazel_0_14_1 = bazel.overrideAttrs (oldAttrs: rec {
-      version = "0.14.1";
-      src = fetchurl {
-        url = "https://github.com/bazelbuild/bazel/releases/download/${version}/bazel-${version}-dist.zip";
-        # nix-prefetch-url --unpack https://github.com/bazelbuild/bazel/releases/download/0.14.1/bazel-0.14.1-dist.zip
-        sha256 = "0980zd7w2bbk6x7rjbvkdfkc31dzv600lvqf35x7mbhq4vcdr76l";
-      };
-    });
-
-    kubectl_1_9_4 = kubectl.overrideAttrs (oldAttrs: rec {
-      version = "1.9.4";
-
-      src = fetchFromGitHub {
-        owner = "kubernetes";
-        repo = "kubernetes";
-        rev = "v${version}";
-        sha256 = "00abs626rhgz5l2ij8jbyws4g3lnb9ipima1q83q0nlj7ksaqz7d";
-      };
-
-      patches = [];
-    });
-
     all = with pkgs; buildEnv {
       name = "all";
 
       paths = [
         # core
         bash
+        file
 
         # nix helpers
+        nix-index
         nix-prefetch-scripts
         nix-repl
         nixops
@@ -96,25 +68,11 @@
         neovim
 
         # development tools
-        bazel_0_14_1
-        gcc
         git
         git-crypt
         gnumake
         go dep
         jdk
-        kubectl_1_9_4
-        nodejs-8_x yarn
-        python2Full
-        python3Full
-        rake
-        helm
-        redis
-
-        # development dependencies and databases
-        redis
-        memcached
-        mysql
 
         # networking tools
         curl
