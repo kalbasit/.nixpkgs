@@ -34,6 +34,10 @@
       inherit (pkgs) stdenv buildGoPackage fetchFromGitHub libvirt pkgconfig;
     };
 
+    # bazel = import ./bazel {
+    #   inherit (pkgs) stdenv lib fetchurl jdk zip unzip bash writeScriptBin coreutils makeWrapper which python gnused libcxx CoreFoundation CoreServices Foundation;
+    # };
+
     bazel_0_14_1 = bazel.overrideAttrs (oldAttrs: rec {
       version = "0.14.1";
       src = fetchurl {
@@ -54,14 +58,6 @@
       };
 
       patches = [];
-    });
-
-    helm_2_9_0 = kubernetes-helm.overrideAttrs (oldAttrs: rec {
-      version = "2.9.0";
-      src = fetchurl {
-        url = "https://kubernetes-helm.storage.googleapis.com/helm-v${version}-linux-amd64.tar.gz";
-        sha256 = "0bnjpiivhsxhl45ab32vzf6crv4z8nbq5kcjkvlbcbswdbgp0pq6";
-      };
     });
 
     all = with pkgs; buildEnv {
@@ -88,17 +84,13 @@
         inotify-tools
         jq
         libnotify
+        libu2f-host # support for Yubikey on Chromium
         lsof
         tmux
         tree
         unzip
         virtualbox
 
-        docker-machine-kvm2 # required by Minikube vm-driver kvm2
-
-        qemu
-
-        libu2f-host # support for Yubikey on Chromium
 
         # editors
         neovim
@@ -112,14 +104,17 @@
         go dep
         jdk
         kubectl_1_9_4
-
-        "minikube-0.25.2"
-
         nodejs-8_x yarn
         python2Full
         python3Full
         rake
-        helm_2_9_0
+        helm
+        redis
+
+        # development dependencies and databases
+        redis
+        memcached
+        mysql
 
         # networking tools
         curl
