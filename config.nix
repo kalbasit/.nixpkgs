@@ -36,51 +36,51 @@
 
       paths = [
         # core
-        bash
-        file
+        # bash
+        # file
 
         # nix helpers
-        nix-index
-        nix-prefetch-scripts
-        nix-repl
-        nixops
-        nixpkgs-lint
-        nox
-        patchelf
-        patchutils
+        # nix-index
+        # nix-prefetch-scripts
+        # nix-repl
+        # nixops
+        # nixpkgs-lint
+        # nox
+        # patchelf
+        # patchutils
 
         # utilities
-        gist
-        gnupg
-        htop
-        httpie
-        inotify-tools
-        jq
-        libnotify
-        libu2f-host # support for Yubikey on Chromium
-        lsof
-        tmux
-        tree
-        unzip
+        # gist
+        # gnupg
+        # htop
+        # httpie
+        # inotify-tools
+        # jq
+        # libnotify
+        # libu2f-host # support for Yubikey on Chromium
+        # lsof
+        # tmux
+        # tree
+        # unzip
         # virtualbox    # TODO: enable VirtualBox on NixOS
 
         # editors
         my_nvim
 
         # development tools
-        git
-        git-crypt
-        gnumake
-        go dep
-        jdk
+        # git
+        # git-crypt
+        # gnumake
+        # go dep
+        # jdk
 
         # networking tools
-        curl
-        mosh
-        ncat
-        wget
-
-        sway
+        # curl
+        # mosh
+        # ncat
+        # wget
+        #
+        # sway
 
         # i3 and helpers
         #i3blocks
@@ -95,8 +95,8 @@
         #xss-lock
 
         # Applications
-        chromium
-        firefox
+        # chromium
+        # firefox
       ];
 
       # paths = [
