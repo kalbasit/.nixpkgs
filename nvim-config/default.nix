@@ -743,24 +743,18 @@ in with pkgs; neovim.override {
     vam.knownPlugins = vimPlugins // my_plugins;
     vam.pluginDictionaries = [
       { names = [
-        "ale"
-        "vim-addon-nix"
-        "nvim-completion-manager"
         "LanguageClient-neovim"
+        "ale"
         "fugitive"
+        "nvim-completion-manager"
+        "polyglot"
+        "sleuth"
+        "vim-addon-nix"
         "vim-airline"
         "vim-airline-themes"
-        "sleuth"
         "vim-go"
-        "vim-javascript"
-        "vim-vue"
-        "elm-vim"
-        "vim-pony"
-        "nim-vim"
-        "vim-elixir"
-        "alchemist-vim"
-        "vim-reason-plus"
-        "hexmode"
+        "vim-terraform"
+        "vim-csv"
       ]; }
     ];
   };
