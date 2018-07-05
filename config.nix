@@ -25,10 +25,11 @@
     # bash-config = import ./bash-config {
     #   inherit (pkgs) stdenv fzf ; jdk = oraclejdk;
     # };
-    # my_vim = import ./vim-config { inherit pkgs ; };
     # elixir-config = import ./elixir-config {
     #   inherit (pkgs) stdenv;
     # };
+
+    my_nvim = import ./nvim-config { inherit pkgs ; };
 
     all = with pkgs; buildEnv {
       name = "all";
@@ -61,11 +62,10 @@
         tmux
         tree
         unzip
-        virtualbox
-
+        # virtualbox    # TODO: enable VirtualBox on NixOS
 
         # editors
-        neovim
+        my_nvim
 
         # development tools
         git
@@ -80,17 +80,19 @@
         ncat
         wget
 
+        sway
+
         # i3 and helpers
-        i3blocks
-        i3status
-        rofi
-        termite
-        xcape
-        xorg.xbacklight
-        xorg.xdpyinfo
-        xorg.xmodmap
-        xsel
-        xss-lock
+        #i3blocks
+        #i3status
+        #rofi
+        #termite
+        #xcape
+        #xorg.xbacklight
+        #xorg.xdpyinfo
+        #xorg.xmodmap
+        #xsel
+        #xss-lock
 
         # Applications
         chromium
