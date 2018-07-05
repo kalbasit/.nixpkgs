@@ -17,6 +17,7 @@
       name = "all";
 
       paths = [
+        fzf
         my_nvim
       ];
     };

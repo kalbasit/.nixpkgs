@@ -745,16 +745,25 @@ in with pkgs; neovim.override {
       { names = [
         "LanguageClient-neovim"
         "ale"
+        "deoplete-go"
+        "deoplete-nvim"
         "fugitive"
+        "fzf-vim"
         "nvim-completion-manager"
         "polyglot"
         "sleuth"
         "vim-addon-nix"
         "vim-airline"
         "vim-airline-themes"
-        "vim-go"
-        "vim-terraform"
+        "vim-colemak"
+        "vim-color-seoul256"
         "vim-csv"
+        "vim-emmet"
+        "vim-go"
+        "vim-pig"
+        "vim-terraform"
+        "vim-typescript"
+        "vim-yats"
       ]; }
     ];
   };
