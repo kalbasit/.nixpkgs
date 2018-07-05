@@ -88,4 +88,62 @@
     };
     dependencies = [];
   };
+
+   vim-go = vimUtils.buildVimPluginFrom2Nix {
+    name = "vim-go-2018-03-27";
+    src = fetchFromGitHub {
+      owner = "fatih";
+      repo = "vim-go";
+      rev = "v1.17";
+      sha256 = "0syawx11mf66clsa049f4x3ajrsqmx4s4iy2fs184xp1d4n4qq8r";
+    };
+    dependencies = [];
+  };
+
+  # show trailing whitespace in red. It also strips whitespace on save (See
+  # settings for it below). To disable it, use :ToggleStripWhitespaceOnSave and
+  # to strip manually do :StripWhiteSpace
+  vim-better-whitespace = vimUtils.buildVimPluginFrom2Nix {
+    name = "vim-better-whitespace-2018-06-11";
+    src = fetchFromGitHub {
+      owner = "ntpeters";
+      repo = "vim-better-whitespace";
+      rev = "70a38fa9683e8cd0635264dd1b69c6ccbee4e3e7";
+      sha256 = "1w16mrvydbvj9msi8p4ym1vasjx6kr4yd8jdhndz0pr3qasn2ix9";
+    };
+    dependencies = [];
+  };
+
+  vim-vissort = vimUtils.buildVimPluginFrom2Nix {
+    name = "vim-vissort-2014-01-31";
+    src = fetchFromGitHub {
+      owner = "navicore";
+      repo = "vissort.vim";
+      rev = "75a5b08b64d2f762206bffd294066533891fa03c";
+      sha256 = "0a71b22apkhicca9nkd06jlcnqkf583mlpfh2mvl4d474viavqfn";
+    };
+    dependencies = [];
+  };
+
+  vim-zoomwintab = vimUtils.buildVimPluginFrom2Nix {
+    name = "vim-zoomwintab-2018-04-14";
+    src = fetchFromGitHub {
+      owner = "troydm";
+      repo = "zoomwintab.vim";
+      rev = "5bbbd1f79e40839a34803627e11f9e662f639fe0";
+      sha256 = "04pv7mmlz9ccgzfg8sycqxplaxpbyh7pmhwcw47b2xwnazjz49d6";
+    };
+    dependencies = [];
+  };
+
+  vim-PreserveNoEOL = vimUtils.buildVimPluginFrom2Nix {
+    name = "vim-PreserveNoEOL-2013-04-25";
+    src = fetchFromGitHub {
+      owner = "vim-scripts";
+      repo = "PreserveNoEOL";
+      rev = "940e3ce90e54d8680bec1135a21dcfbd6c9bfb62";
+      sha256 = "1726jpr2zf6jrb00pp082ikbx4mll3a877pnzs6i18f9fgpaqqgd";
+    };
+    dependencies = [];
+  };
 }
