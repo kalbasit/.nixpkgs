@@ -16,7 +16,7 @@ function _pathappend() {
 }
 
 # Important variable
-export EDITOR="nvim"
+export EDITOR="@nvim_dir@/bin/nvim"
 export LANG=en_US.UTF-8
 export LC_ALL="${LANG}"
 export MYFS="${HOME}/.local"
