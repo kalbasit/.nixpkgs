@@ -33,6 +33,9 @@
 
         tmux
         tmux-config
+
+        zsh
+        nix-zsh-completions
       ];
     };
   };
