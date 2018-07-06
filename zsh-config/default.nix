@@ -1,4 +1,4 @@
-{stdenv}:
+{stdenv, self}:
 
 stdenv.mkDerivation rec {
   name = "zsh-config";
@@ -9,9 +9,9 @@ stdenv.mkDerivation rec {
 
   installPhase = ''
     install -dm 755 $out/userHome
-    ln -s $src/bin $out/userHome/.bin
-    ln -s $src/libexec $out/userHome/.libexec
-    ln -s $src/zsh $out/userHome/.zsh
-    cp $src/zshrc $out/userHome/.zshrc
+    substitute $src/zshrc $out/userHome/.zshrc \
+      --subst-var-by bin_dir ${self.src}/bin \
+      --subst-var-by libexec_dir ${self.src}/libexec \
+      --subst-var-by zsh_dir ${self.src}/zsh
   '';
 }
