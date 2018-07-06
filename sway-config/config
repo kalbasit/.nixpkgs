@@ -142,8 +142,8 @@ bindsym Shift+XF86MonBrightnessDown exec $nosid @brightnessctl_bin@ s 1%-
 bindsym XF86PowerOff exec $nosid $locker && systemctl suspend
 
 # clipboard history
-# TODO: install greenclip and enable this
-# bindsym $mod+$alt+c exec @rofi_bin@ -modi "clipboard:greenclip print" -show clipboard
+# TODO: install greenclip and use the binary directly
+bindsym $mod+$alt+c exec @rofi_bin@ -modi "clipboard:greenclip print" -show clipboard
 
 ################
 # Applications #
@@ -171,32 +171,22 @@ bindsym $mod+$alt+w mode "$mode_wm"
 # Application launcher
 set $mode_apps Launch: (p) Chromium personal, (u) Chromium publica, (c) Charles, (s) Slack, (i) Irc, (w) Whatsapp, (t) Teamviewer, (m) Pulse SMS
 mode "$mode_apps" {
-	bindsym p exec relay-browser --profile personal, mode "default"
-	bindsym u exec relay-browser --profile publica, mode "default"
+	bindsym p exec @out_dir@/bin/relay-browser --profile personal, mode "default"
+	bindsym u exec @out_dir@/bin/relay-browser --profile publica, mode "default"
 	bindsym c exec charles, mode "default"
-	bindsym s exec slack, mode "default"
-	bindsym i exec termite --title=irc --exec=weechat, mode "default"
+	bindsym s exec @slack_bin@, mode "default"
+	bindsym i exec @termite_bin@ --title=irc --exec=weechat, mode "default"
 	bindsym w exec whatsapp-web-desktop, mode "default"
-	bindsym t exec myteamviewer, mode "default"
-	bindsym m exec $nosid /opt/Pulse\ SMS/pulse-sms, mode "default"
+	# TODO: is this still necessary?
+	#bindsym t exec myteamviewer, mode "default"
+	# TODO: install Pulse and use the binary here
+	#bindsym m exec $nosid /opt/Pulse\ SMS/pulse-sms, mode "default"
 
 	# back to normal: Enter or Escape
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 }
 bindsym $mod+$alt+a mode "$mode_apps"
-
-# System commands
-set $mode_system System: (b) Backup to Madea, (c) Connect to B&W P7
-mode "$mode_system" {
-	bindsym b exec gksu /home/kalbasit/.bin/backup_to_madea, mode "default"
-	bindsym c exec $nosid bluetoothctl <<< $'connect EC:66:D1:93:2C:C2', mode "default"
-
-	# back to normal: Enter or Escape
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
-}
-bindsym $mod+$alt+s mode "$mode_system"
 
 # resize window (you can also use the mouse for that)
 set $resize_mode resize
@@ -251,31 +241,6 @@ mode "$move_mode" {
 	bindsym Escape mode "default"
 }
 bindsym $mod+$alt+m mode "$move_mode"
-
-# Display mode allows output/resolution selection
-set $mode_display (l) Laptop screen, (m) Multiple screen, (w) Wide screen
-mode "$mode_display" {
-	bindsym l exec $nosid xrandr --output eDP1 --mode 1920x1080 --output $extmonitor --off, mode "default"
-	bindsym m exec $nosid xrandr --output eDP1 --mode 1920x1080 --output $extmonitor --primary --mode 3440x1440 --right-of eDP1, mode "default"
-	bindsym w exec $nosid xrandr --output eDP1 --off --output $extmonitor --mode 3440x1440, mode "default"
-
-	# back to normal: Enter or Escape
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
-}
-bindsym $mod+$alt+d mode "$mode_display"
-
-# Keyboard layout selection
-set $mode_keyboard (q) Qwerty, (c) Colemak
-mode "$mode_keyboard" {
-	bindsym q exec $nosid setxkbmap us && xmodmap ~/.Xmodmap && @notify-send_bin@ 'keyboard switch to Qwerty', mode "default"
-	bindsym c exec $nosid setxkbmap us -variant colemak && xmodmap ~/.Xmodmap && @notify-send_bin@ 'keyboard switch to Colemak', mode "default"
-
-	# back to normal: Enter or Escape
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
-}
-bindsym $mod+$alt+k mode "$mode_keyboard"
 
 ## Management of power
 set $mode_power System: (l) lock, (o) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
@@ -335,19 +300,6 @@ for_window [class="^Tor Browser"] floating enable
 for_window [class="^net-filebot-Main$"] floating enable
 for_window [class="^ROX-Filer$"] floating enable
 
-########################
-# Workspace assignment #
-########################
-
-# assign important spaces to my external monitor
-workspace personal@base output $extmonitor
-workspace publica@base output $extmonitor
-workspace irc output $extmonitor
-workspace mail output $extmonitor
-
-# assign side apps to the laptop
-workspace media output eDP1
-
 ######################
 # Scratchpad support #
 ######################
@@ -370,13 +322,8 @@ bindsym $alt+p [class="pulse-sms"] scratchpad show
 # Auto Start #
 ##############
 
-# TODO: should I move back to wee-slack?
-# exec $nosid termite --title=irc --exec="weechat"
-exec $nosid whatsapp-web-desktop
-exec $nosid /opt/Pulse\ SMS/pulse-sms
-
 # Start the personal terminal on the personal workspace
-exec swaymsg "workspace personal@base; exec $nosid /usr/bin/termite"
+exec swaymsg "workspace personal@base; exec $nosid @termite_bin@"
 
 include /etc/sway/config.d/*
 include ~/.config/sway/config.d/`hostname`/*
