@@ -26,6 +26,8 @@
 
         python27
         python36
+
+        tmux
       ];
     };
   };
