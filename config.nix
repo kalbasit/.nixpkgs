@@ -18,7 +18,15 @@
 
       paths = [
         fzf
+
+        python27
+        python36
+
+        nodejs-8_x
+
         my_nvim
+        python27Packages.neovim
+        python36Packages.neovim
       ];
     };
   };
