@@ -9,9 +9,9 @@ stdenv.mkDerivation rec {
 
   installPhase = ''
     install -dm 755 $out/userHome
-    cp $src/bin $out/bin
-    cp $src/libexec $out/libexec
-    cp $src/zsh $out/zsh
+    cp -R $src/bin $out/bin
+    cp -R $src/libexec $out/libexec
+    cp -R $src/zsh $out/zsh
 
     substituteInPlace $out/zsh/functions.zsh \
       --subst-var-by out_dir $out
