@@ -2,12 +2,10 @@
   allowUnfree = true;
 
   packageOverrides = pkgs_: with pkgs_; {
-    my_nvim = import ./nvim-config { inherit pkgs ; };
+    nvim-config = import ./nvim-config { inherit pkgs ; };
 
     git-config = import ./git-config {
-      # TODO: how to send nvim instead of my_nvim so the packages are not
-      # tightly coupled.
-      inherit (pkgs) stdenv my_nvim;
+      inherit (pkgs) stdenv nvim-config;
     };
 
     less-config = import ./less-config {
@@ -19,7 +17,7 @@
     };
 
     sway-config = import ./sway-config {
-      inherit (pkgs) stdenv brightnessctl pulseaudio i3lock rofi termite libnotify slack;
+      inherit (pkgs) stdenv brightnessctl pulseaudio i3lock rofi termite libnotify slack zsh-config nvim-config;
     };
 
     tmux-config = import ./tmux-config {
@@ -45,7 +43,7 @@
         most
         most-config
 
-        my_nvim
+        nvim-config
 
         nix-index
 

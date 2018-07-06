@@ -1,4 +1,4 @@
-{stdenv, brightnessctl, pulseaudio, i3lock, rofi, termite, libnotify, slack}:
+{stdenv, brightnessctl, pulseaudio, i3lock, rofi, termite, libnotify, slack, zsh-config, nvim-config}:
 
 stdenv.mkDerivation rec {
   name = "sway-config";
@@ -11,6 +11,11 @@ stdenv.mkDerivation rec {
     install -d -m755 $out/userHome/.config/sway
 
     cp -dr $src/bin $out/bin
+    substituteInPlace $out/bin/relay-browser \
+      --subst-var-by zsh_dir ${zsh-config}
+    substituteInPlace $out/bin/sway-run \
+      --subst-var-by nvim_dir ${nvim-config}
+
     cp -dr $src/config.d $out/userHome/.config/sway/config.d
 
     substitute $src/config $out/userHome/.config/sway/config \
