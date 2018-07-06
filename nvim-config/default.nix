@@ -1,4 +1,5 @@
 # vim:foldmethod=marker:foldlevel=0:
+
 { pkgs }:
 
 let
@@ -6,6 +7,13 @@ my_plugins = import ./plugins.nix { inherit (pkgs) vimUtils fetchFromGitHub; };
 
 in with pkgs; neovim.override {
   vimAlias = true;
+
+  withPython = true;
+  extraPythonPackages = pkgs: with pkgs; [pkgs.python27Packages.neovim];
+
+  withPython3 = true;
+  extraPython3Packages = pkgs: with pkgs; [python36Packages.neovim];
+
   configure = {
     customRC = ''
       "" Settings{{{
