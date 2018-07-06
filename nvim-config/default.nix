@@ -9,10 +9,10 @@ in with pkgs; neovim.override {
   vimAlias = true;
 
   withPython = true;
-  extraPythonPackages = pkgs: with pkgs; [pkgs.python27Packages.neovim];
+  extraPythonPackages = [python27Packages.neovim];
 
   withPython3 = true;
-  extraPython3Packages = pkgs: with pkgs; [python36Packages.neovim];
+  extraPython3Packages = [python36Packages.neovim];
 
   configure = {
     customRC = ''
