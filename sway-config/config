@@ -117,6 +117,7 @@ bindsym $mod+a focus parent
 bindsym $mod+d focus child
 
 # start a region screenshot
+# TODO: re-do deepin-screenshot
 bindsym $mod+Shift+4 exec deepin-screenshot
 
 # focus the urgent window

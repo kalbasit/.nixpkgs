@@ -18,6 +18,10 @@
       inherit (pkgs) stdenv;
     };
 
+    sway-config = import ./sway-config {
+      inherit (pkgs) stdenv brightnessctl pulseaudio i3lock rofi termite libnotify slack;
+    };
+
     tmux-config = import ./tmux-config {
       inherit (pkgs) stdenv tmux xsel gist libnotify;
     };
@@ -42,13 +46,16 @@
         most-config
 
         my_nvim
-                
+
         nix-index
 
         nodejs-8_x
 
         python27
         python36
+
+        sway
+        sway-config
 
         tmux
         tmux-config
