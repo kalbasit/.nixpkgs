@@ -54,7 +54,6 @@
         python27
         python36
 
-        sway
         sway-config
 
         tmux
