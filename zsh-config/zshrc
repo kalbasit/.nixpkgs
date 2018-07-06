@@ -227,7 +227,7 @@ setopt zle
 # functions
 #####################################################################
 
-source "@zsh_dir@/functions.zsh"
+source "@out_dir@/zsh/functions.zsh"
 
 #####################################################################
 # exports
@@ -292,7 +292,7 @@ export LC_ALL="${LANG}"
 [[ -n "${LC_CTYPE}" ]] && unset LC_CTYPE
 
 # We need our bin folder
-pathprepend PATH "@bin_dir@"
+pathprepend PATH "@out_dir@/bin"
 
 # load the Emscripten environment
 pathprepend PATH "/usr/lib/emsdk"
@@ -313,8 +313,8 @@ if [[ -d "${MYFS}" ]]; then
 fi
 
 # add any libexec directory
-if [[ -d @libexec_dir@ ]]; then
-	for dir in @libexec_dir@/*; do
+if [[ -d @out_dir@/libexec ]]; then
+	for dir in @out_dir@/libexec/*; do
 		pathappend PATH "${dir}"
 	done
 fi
@@ -829,7 +829,7 @@ fi
 
 # Source host-specific settings if the exists. Keep this last so it can
 # overwrite any of the other settings.
-[[ -r "@zsh_dir@/hosts/${SHORT_HOST}.zsh" ]] && source "@zsh_dir@/hosts/${SHORT_HOST}.zsh"
+[[ -r "@out_dir@/zsh/hosts/${SHORT_HOST}.zsh" ]] && source "@out_dir@/zsh/hosts/${SHORT_HOST}.zsh"
 
 #####################################################################
 # Profile support
