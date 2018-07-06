@@ -1,15 +1,6 @@
 {
   allowUnfree = true;
 
-  firefox = {
-    enableGoogleTalkPlugin = true;
-    enableAdobeFlash = true;
-  };
-
-  chromium = {
-    enablePepperFlash = true;
-  };
-
   packageOverrides = pkgs_: with pkgs_; {
     my_nvim = import ./nvim-config { inherit pkgs ; };
 
@@ -32,6 +23,15 @@
 }
 
 # TODO: remove all comments below once it's settled
+
+# firefox = {
+#   enableGoogleTalkPlugin = true;
+#   enableAdobeFlash = true;
+# };
+#
+# chromium = {
+#   enablePepperFlash = true;
+# };
 
 # gtk-config = import ./gtk-config {
 #   inherit (pkgs) stdenv albatross;
