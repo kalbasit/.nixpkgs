@@ -1,24 +1,19 @@
-# make sure DOTZSH is defined
-if [[ -z "${DOTZSH}" ]]; then
-	export DOTZSH="${0:a:h}"
-fi
-
 # add the zsh functions to the fpath
-fpath+="${DOTZSH}/functions"
-fpath+="${DOTZSH}/completions"
+fpath+="@zsh_out@/zsh/functions"
+fpath+="@zsh_out@/zsh/completions"
 
 # load the important functions
-source "${DOTZSH}/functions/debug"
-source "${DOTZSH}/functions/have"
-source "${DOTZSH}/functions/is_func"
-source "${DOTZSH}/functions/pathappend"
-source "${DOTZSH}/functions/pathprepend"
-source "${DOTZSH}/functions/pathunmunge"
-source "${DOTZSH}/functions/sp"
-source "${DOTZSH}/functions/ssh_agents"
+source "@zsh_out@/zsh/functions/debug"
+source "@zsh_out@/zsh/functions/have"
+source "@zsh_out@/zsh/functions/is_func"
+source "@zsh_out@/zsh/functions/pathappend"
+source "@zsh_out@/zsh/functions/pathprepend"
+source "@zsh_out@/zsh/functions/pathunmunge"
+source "@zsh_out@/zsh/functions/sp"
+source "@zsh_out@/zsh/functions/ssh_agents"
 
 # autoload all of the functions
-for func in ${DOTZSH}/functions/*; do
+for func in @zsh_out@/zsh/functions/*; do
   case "$(basename ${func})" in
     debug)       ;;
     have)        ;;

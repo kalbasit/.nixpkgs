@@ -13,6 +13,9 @@ stdenv.mkDerivation rec {
     cp -R $src/libexec $out/libexec
     cp -R $src/zsh $out/zsh
 
+    substituteInPlace $out/zsh/functions.zsh \
+      --subst-var-by out_dir $out
+
     substitute $src/zshrc $out/userHome/.zshrc \
       --subst-var-by out_dir $out
   '';

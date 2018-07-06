@@ -15,8 +15,6 @@
 [[ "$OSTYPE" = darwin* ]] && SHORT_HOST="$( scutil --get ComputerName 2>/dev/null )"
 [[ -z "${SHORT_HOST}" ]] && SHORT_HOST="${HOST/.*/}"
 
-export DOTZSH="${HOME}/.zsh"
-
 #####################################################################
 # zplug
 #####################################################################
@@ -854,7 +852,7 @@ if [[ -z "${ACTIVE_PROFILE}" || -z "${ACTIVE_STORY}" ]]; then
 fi
 
 # load the active profile only if one is available
-if [[ -n "${ACTIVE_PROFILE}" ]] && [[ -f "${DOTZSH}/profiles/${ACTIVE_PROFILE}" ]]; then
+if [[ -n "${ACTIVE_PROFILE}" ]] && [[ -f "${HOME}/.zsh-profiles/${ACTIVE_PROFILE}" ]]; then
 	sp "${ACTIVE_PROFILE}"
 fi
 
