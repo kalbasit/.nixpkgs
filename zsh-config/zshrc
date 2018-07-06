@@ -775,15 +775,6 @@ zle -N self-insert url-quote-magic
 bindkey "^y" copy-prev-shell-word
 
 #####################################################################
-# termsupport
-#####################################################################
-
-# Make sure TERM is sane
-export TERM=xterm-256color
-[[ -n "$TMUX" ]] && export TERM=screen-256color
-[[ "$OSTYPE" = linux* ]] && export TERM=xterm-termite
-
-#####################################################################
 # Externals
 #####################################################################
 
