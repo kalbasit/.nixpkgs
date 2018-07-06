@@ -9,9 +9,9 @@ stdenv.mkDerivation rec {
 
   installPhase = ''
     install -dm 755 $out/userHome
-      cp -R $src/bin $out/userHome/.bin
-      cp -R $src/libexec $out/userHome/.libexec
-      cp -R $src/zsh $out/userHome/.zsh
-      cp $src/zshrc $out/userHome/.zshrc
+    ln -s $src/bin $out/userHome/.bin
+    ln -s $src/libexec $out/userHome/.libexec
+    ln -s $src/zsh $out/userHome/.zsh
+    cp $src/zshrc $out/userHome/.zshrc
   '';
 }
