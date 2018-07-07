@@ -53,6 +53,8 @@
 
         nodejs-8_x
 
+        powerline-fonts
+
         python27
         python36
 
