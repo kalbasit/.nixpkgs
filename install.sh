@@ -14,6 +14,7 @@ if [[ -d "${HOME}/.nix-profile/userHome" ]]; then
 	done
 
 	# NOTE: This is needed because Termite could not find the xterm-termite terminfo
+	# See https://github.com/NixOS/nixpkgs/issues/19785
 	echo "Linking terminfo to allow terminals to find installed terminfo"
 	ln -sf .nix-profile/share/terminfo .terminfo
 
