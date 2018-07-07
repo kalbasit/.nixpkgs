@@ -1,6 +1,23 @@
-sway
-networkmanager
 nix
-ttf-chromeos-fonts
-chromium
+
+# install SWAY because nix-installed sway does not start. I believe it's missing a permission.
+sway
+
+# install fonts required by Sway and the terminal
+# TODO: move these to Nix
+ttf-croscore
 powerline-fonts
+
+# Manage network!
+networkmanager
+
+# install chromium because it does not start when installed with Nix due to
+# missing setuid on the binary.
+# TODO: maybe add a postHook that uses sudo to setuid the binary?
+chromium
+
+# install platform-specific dependencies until I get my Nix stuff there
+virtualbox
+minikube
+kubernetes-helm
+kubectl-bin
