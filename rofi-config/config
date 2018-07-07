@@ -6,4 +6,4 @@ rofi.modi: window,run,ssh,drun,Workspaces:sway-switch-workspaces,RenameWorkspace
 ! Default:  mono 12
 rofi.font: Cousine 9
 
-rofi.theme: /usr/share/rofi/themes/Adapta-Nokto.rasi
+rofi.theme: @rofi_dir@/share/rofi/themes/Adapta-Nokto.rasi

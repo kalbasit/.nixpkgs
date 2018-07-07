@@ -9,6 +9,7 @@ stdenv.mkDerivation rec {
 
   installPhase = ''
     install -dm 755 $out/userHome/.config/rofi
-
+    substitute $src/config $out/userHome/.config/rofi/config \
+      --subst-var-by rofi_dir ${rofi}
   '';
 }
