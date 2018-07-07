@@ -60,6 +60,7 @@
 
         sway-config
 
+        termite
         termite-config
 
         tmux
