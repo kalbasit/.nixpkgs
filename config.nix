@@ -21,7 +21,7 @@
     };
 
     rofi-config = import ./rofi-config {
-      inherit (pkgs) stdenv;
+      inherit (pkgs) stdenv rofi;
     };
 
     sway-config = import ./sway-config {
