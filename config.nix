@@ -46,6 +46,9 @@
         git-crypt
         git-config
 
+        go
+        dep
+
         less-config
 
         most
