@@ -1,0 +1,8 @@
+# vim:ft=i3:
+
+
+input "DLL075B:01 06CB:76AF Touchpad" {
+    tap enabled
+    natural_scroll enabled
+    dwt enabled
+}
