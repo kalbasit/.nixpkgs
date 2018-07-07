@@ -29,7 +29,7 @@
     };
 
     swm = import ./swm {
-      inherit (pkgs) buildGoPackage fetchFromGitHub;
+      inherit (pkgs) stdenv buildGoPackage fetchgit fetchhg fetchbzr fetchsvn;
     };
 
     tmux-config = import ./tmux-config {
