@@ -28,6 +28,10 @@
       inherit (pkgs) stdenv brightnessctl pulseaudio i3lock rofi termite libnotify slack zsh-config nvim-config i3status;
     };
 
+    swm = import ./swm {
+      inherit (pkgs) buildGoPackage fetchFromGitHub;
+    };
+
     tmux-config = import ./tmux-config {
       inherit (pkgs) stdenv tmux xsel gist libnotify;
     };
@@ -48,6 +52,7 @@
 
         go
         dep
+        swm
 
         less-config
 
