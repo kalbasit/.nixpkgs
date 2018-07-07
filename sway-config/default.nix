@@ -12,6 +12,7 @@ stdenv.mkDerivation rec {
 
     cp -dr $src/bin $out/bin
     substituteInPlace $out/bin/relay-browser \
+      --subst-var-by rofi_bin ${rofi}/bin/rofi \
       --subst-var-by zsh_dir ${zsh-config}
     substituteInPlace $out/bin/sway-run \
       --subst-var-by nvim_dir ${nvim-config}
