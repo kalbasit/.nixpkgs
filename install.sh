@@ -15,8 +15,10 @@ if [[ -d "${HOME}/.nix-profile/userHome" ]]; then
 
 	# NOTE: This is needed because Termite could not find the xterm-termite terminfo
 	# See https://github.com/NixOS/nixpkgs/issues/19785
-	echo "Linking terminfo to allow terminals to find installed terminfo"
-	ln -sf .nix-profile/share/terminfo .terminfo
+	if [[ ! -L .terminfo ]]; then
+		echo "Linking terminfo to allow terminals to find installed terminfo"
+		ln -sf .nix-profile/share/terminfo .terminfo
+	fi
 
 	popd > /dev/null
 fi
