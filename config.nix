@@ -20,7 +20,7 @@
       inherit (pkgs) stdenv;
     };
 
-    termite-config = import ./termite-config {
+    rofi-config = import ./rofi-config {
       inherit (pkgs) stdenv;
     };
 
@@ -30,6 +30,10 @@
 
     swm = import ./swm {
       inherit (pkgs) stdenv buildGoPackage fetchgit;
+    };
+
+    termite-config = import ./termite-config {
+      inherit (pkgs) stdenv;
     };
 
     tmux-config = import ./tmux-config {
@@ -71,6 +75,8 @@
 
         python27
         python36
+
+        rofi-config
 
         surfingkeys-config
 
