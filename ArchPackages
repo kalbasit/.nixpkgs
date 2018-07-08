@@ -21,3 +21,5 @@ virtualbox
 minikube
 kubernetes-helm
 kubectl-bin
+lsof
+bazel
