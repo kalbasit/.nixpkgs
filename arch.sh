@@ -14,7 +14,7 @@ if [[ ! -L "${HOME}/.terminfo" ]]; then
 fi
 
 while read line; do
-	if [[ "$(pacman -Qs "^${line}$" | wc -l)" -eq 0 ]]; then
+	if [[ "$(pacman -Qi "${line}" | wc -l)" -eq 0 ]]; then
 		echo "installing ${line} in the OS"
 		yay -S --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu --noconfirm "${line}"
 	fi
