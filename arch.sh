@@ -8,9 +8,9 @@ fi
 
 # NOTE: This is needed because Termite could not find the xterm-termite terminfo
 # See https://github.com/NixOS/nixpkgs/issues/19785
-if [[ ! -L .terminfo ]]; then
+if [[ ! -L "${HOME}/.terminfo" ]]; then
 	echo "Linking terminfo to allow terminals to find installed terminfo"
-	ln -sf .nix-profile/share/terminfo .terminfo
+	ln -sf .nix-profile/share/terminfo "${HOME}/.terminfo"
 fi
 
 while read line; do
