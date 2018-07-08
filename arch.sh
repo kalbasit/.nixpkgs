@@ -18,7 +18,7 @@ while read line; do
 		echo "installing ${line} in the OS"
 		yay -S --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu --noconfirm "${line}"
 	fi
-done < <(grep -v '^#\|^$' ArchPackages)
+done < <(grep -v '^#\|^$' arch-packages)
 
 if [[ ! -f /etc/ca-certificates/trust-source/anchors/nasreddine.crt ]]; then
 	curl -LO http://nasreddine.com/ca.crt

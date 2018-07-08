@@ -18,11 +18,3 @@ pulseaudio
 # missing setuid on the binary.
 # TODO: maybe add a postHook that uses sudo to setuid the binary?
 chromium
-
-# install platform-specific dependencies until I get my Nix stuff there
-virtualbox
-minikube
-kubernetes-helm
-kubectl-bin
-lsof
-bazel
