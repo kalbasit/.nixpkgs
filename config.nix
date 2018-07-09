@@ -16,12 +16,18 @@
       inherit (pkgs) stdenv;
     };
 
-    surfingkeys-config = import ./surfingkeys-config {
-      inherit (pkgs) stdenv;
+    # private is not installed via all, but has to be installed explicitely.
+    # See the `install.sh` to see how it get installed.
+    private = import ./private {
+      inherit (pkgs) stdenv fetchgit pinentry_ncurses;
     };
 
     rofi-config = import ./rofi-config {
       inherit (pkgs) stdenv rofi;
+    };
+
+    surfingkeys-config = import ./surfingkeys-config {
+      inherit (pkgs) stdenv;
     };
 
     sway-config = import ./sway-config {
