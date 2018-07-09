@@ -48,6 +48,8 @@
       name = "all";
 
       paths = [
+        direnv
+
         fzf
 
         git
