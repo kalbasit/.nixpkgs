@@ -78,6 +78,8 @@
         python27
         python36
 
+        rake
+
         rofi-config
 
         surfingkeys-config
