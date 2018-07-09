@@ -41,7 +41,7 @@
     };
 
     zsh-config = import ./zsh-config {
-      inherit (pkgs) stdenv;
+      inherit (pkgs) stdenv direnv;
     };
 
     all = with pkgs; buildEnv {
