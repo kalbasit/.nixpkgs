@@ -16,6 +16,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # boot the latest kernel
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
