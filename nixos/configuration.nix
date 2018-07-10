@@ -103,6 +103,9 @@
   # TODO TODO TODO: remove this once it's all setup
   security.sudo.wheelNeedsPassword = false;
 
+  # hide process information of other users when running non-root
+  security.hideProcessInformation = true;
+
   # update the system periodically to receive security updates as they become available
   system.autoUpgrade.enable = true;
 
