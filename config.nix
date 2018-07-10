@@ -75,6 +75,9 @@
 
         jq
 
+        keybase
+        kbd
+
         less-config
 
         mosh
