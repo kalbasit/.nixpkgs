@@ -96,7 +96,13 @@
 
   # Enable kubernetes
   services.kubernetes = {
-    kubelet.extraOpts = "--fail-swap-on=false";
+    addons.dashboard.enable = true;
+    addons.dashboard.rbac.enable = true;
+    apiserver.authorizationMode = ["AlwaysAllow" "RBAC" "Node"];
+    apiserver.basicAuthFile = pkgs.writeText "users" ''
+      kubernetes,admin,0,"system:masters"
+    '';
+    kubelet.extraOpts = "--fail-swap-on=false --authorization-mode=AlwaysAllow";
     roles = [ "master" "node" ];
 
     # when DNS is enabled, it will end up in a crashloop which in turn crashes
