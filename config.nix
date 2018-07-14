@@ -11,6 +11,9 @@
   };
 
   packageOverrides = pkgs_: with pkgs_; {
+    i3-config = import ./i3-config {
+      inherit pkgs stdenv;
+    };
 
     git-config = import ./git-config {
       inherit (pkgs) stdenv nvim-config;
