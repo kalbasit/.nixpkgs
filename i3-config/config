@@ -172,10 +172,12 @@ set $mode_apps Launch: (p) Chromium personal, (u) Chromium publica, (c) Charles,
 mode "$mode_apps" {
 	bindsym p exec @rbrowser_bin@ --profile personal, mode "default"
 	bindsym u exec @rbrowser_bin@ --profile publica, mode "default"
-	bindsym c exec charles, mode "default"
+	# TODO: https://github.com/NixOS/nixpkgs/pull/43502
+	#bindsym c exec charles, mode "default"
 	bindsym s exec @slack_bin@, mode "default"
 	bindsym i exec @termite_bin@ --title=irc --exec=weechat, mode "default"
-	bindsym w exec whatsapp-web-desktop, mode "default"
+	# TODO: install this
+	# bindsym w exec whatsapp-web-desktop, mode "default"
 	# TODO: is this still necessary?
 	#bindsym t exec myteamviewer, mode "default"
 	# TODO: install Pulse and use the binary here
