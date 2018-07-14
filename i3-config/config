@@ -7,8 +7,7 @@
 set $mod Mod4
 set $alt Mod1
 set $nosid --no-startup-id
-set $locker i3lock && sleep 1
-set $extmonitor DP1-2
+set $locker @i3lock_bin@ && sleep 1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -87,22 +86,22 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+Shift+q kill
 
 # rofi run
-bindsym $mod+r exec rofi -show run
+bindsym $mod+r exec @rofi_bin@ -show run
 
 # rofi lastpass
-bindsym $mod+p exec rofi -modi lpass:rofi-lpass -show lpass
+bindsym $mod+p exec @rofi_bin@ -modi lpass:rofi-lpass -show lpass
 
 # list open windows to switch to
-bindsym $alt+Tab exec rofi -show window
+bindsym $alt+Tab exec @rofi_bin@ -show window
 
 # switch between the current and the previously focused one
 bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+Shift+Tab move container to workspace back_and_forth
 
 # dynamic workspaces
-bindsym $mod+space exec rofi -show Workspaces
-bindsym $mod+Shift+space exec rofi -show MoveContainer
-bindsym $mod+$alt+space exec rofi -show RenameWorkspace
+bindsym $mod+space exec @rofi_bin@ -show Workspaces
+bindsym $mod+Shift+space exec @rofi_bin@ -show MoveContainer
+bindsym $mod+$alt+space exec @rofi_bin@ -show RenameWorkspace
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+l layout stacking
@@ -116,6 +115,7 @@ bindsym $mod+a focus parent
 bindsym $mod+d focus child
 
 # start a region screenshot
+# TODO: re-do deepin-screenshot
 bindsym $mod+Shift+4 exec deepin-screenshot
 
 # focus the urgent window
@@ -127,28 +127,29 @@ bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
 bindsym $mod+apostrophe exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Go to: '
 
 # volume support
-bindsym XF86AudioRaiseVolume exec $nosid pactl set-sink-mute @DEFAULT_SINK@ false, exec $nosid pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume exec $nosid pactl set-sink-mute @DEFAULT_SINK@ false, exec $nosid pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute exec $nosid pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioRaiseVolume exec $nosid @pactl_bin@ set-sink-mute @DEFAULT_SINK@ false, exec $nosid @pactl_bin@ set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec $nosid @pactl_bin@ set-sink-mute @DEFAULT_SINK@ false, exec $nosid @pactl_bin@ set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec $nosid @pactl_bin@ set-sink-mute @DEFAULT_SINK@ toggle
 
 # brightness support
-bindsym XF86MonBrightnessUp exec $nosid xbacklight -inc 5
-bindsym XF86MonBrightnessDown exec $nosid xbacklight -dec 5
-bindsym Shift+XF86MonBrightnessUp exec $nosid xbacklight -inc 1
-bindsym Shift+XF86MonBrightnessDown exec $nosid xbacklight -dec 1
+bindsym XF86MonBrightnessUp exec $nosid @brightnessctl_bin@ s +5%
+bindsym XF86MonBrightnessDown exec $nosid @brightnessctl_bin@ s 5%-
+bindsym Shift+XF86MonBrightnessUp exec $nosid @brightnessctl_bin@ s +1%
+bindsym Shift+XF86MonBrightnessDown exec $nosid @brightnessctl_bin@ s 1%-
 
 # sleep support
 bindsym XF86PowerOff exec $nosid $locker && systemctl suspend
 
 # clipboard history
-bindsym $mod+$alt+c exec rofi -modi "clipboard:greenclip print" -show clipboard
+# TODO: install greenclip and use the binary directly
+bindsym $mod+$alt+c exec @rofi_bin@ -modi "clipboard:greenclip print" -show clipboard
 
 ################
 # Applications #
 ################
 
 # start a terminal
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec @termite_bin@
 
 #########
 # Modes #
@@ -157,8 +158,8 @@ bindsym $mod+Return exec termite
 # Window Manager mode, this mode allows me to control i3
 set $mode_wm WM: (r) Reload i3, (e) Restart i3
 mode "$mode_wm" {
-	bindsym r reload; exec $nosid notify-send 'i3 configuration reloaded', mode "default"
-	bindsym e restart; exec $nosid notify-send 'i3 restarted', mode "default"
+	bindsym r reload; exec $nosid @notify-send_bin@ 'i3 configuration reloaded', mode "default"
+	bindsym e restart; exec $nosid @notify-send_bin@ 'i3 restarted', mode "default"
 
 	# back to normal: Enter or Escape
 	bindsym Return mode "default"
@@ -169,32 +170,22 @@ bindsym $mod+$alt+w mode "$mode_wm"
 # Application launcher
 set $mode_apps Launch: (p) Chromium personal, (u) Chromium publica, (c) Charles, (s) Slack, (i) Irc, (w) Whatsapp, (t) Teamviewer, (m) Pulse SMS
 mode "$mode_apps" {
-	bindsym p exec relay-browser --profile personal, mode "default"
-	bindsym u exec relay-browser --profile publica, mode "default"
+	bindsym p exec @out_dir@/bin/relay-browser --profile personal, mode "default"
+	bindsym u exec @out_dir@/bin/relay-browser --profile publica, mode "default"
 	bindsym c exec charles, mode "default"
-	bindsym s exec slack, mode "default"
-	bindsym i exec termite --title=irc --exec=weechat, mode "default"
+	bindsym s exec @slack_bin@, mode "default"
+	bindsym i exec @termite_bin@ --title=irc --exec=weechat, mode "default"
 	bindsym w exec whatsapp-web-desktop, mode "default"
-	bindsym t exec myteamviewer, mode "default"
-	bindsym m exec $nosid /opt/Pulse\ SMS/pulse-sms, mode "default"
+	# TODO: is this still necessary?
+	#bindsym t exec myteamviewer, mode "default"
+	# TODO: install Pulse and use the binary here
+	#bindsym m exec $nosid /opt/Pulse\ SMS/pulse-sms, mode "default"
 
 	# back to normal: Enter or Escape
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 }
 bindsym $mod+$alt+a mode "$mode_apps"
-
-# System commands
-set $mode_system System: (b) Backup to Madea, (c) Connect to B&W P7
-mode "$mode_system" {
-	bindsym b exec gksu /home/kalbasit/.bin/backup_to_madea, mode "default"
-	bindsym c exec $nosid bluetoothctl <<< $'connect EC:66:D1:93:2C:C2', mode "default"
-
-	# back to normal: Enter or Escape
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
-}
-bindsym $mod+$alt+s mode "$mode_system"
 
 # resize window (you can also use the mouse for that)
 set $resize_mode resize
@@ -313,7 +304,7 @@ bar {
 	# put the bar on the top
 	position top
 	# use i3status for the bar
-	status_command i3status
+	status_command @i3status_bin@
 	# disable clicking on workspace buttons
 	bindsym button1 nop
 
