@@ -11,7 +11,6 @@
   };
 
   packageOverrides = pkgs_: with pkgs_; {
-    nvim-config = import ./nvim-config { inherit pkgs ; };
 
     git-config = import ./git-config {
       inherit (pkgs) stdenv nvim-config;
@@ -23,6 +22,10 @@
 
     most-config = import ./most-config {
       inherit (pkgs) stdenv;
+    };
+
+    nvim-config = import ./nvim-config {
+      inherit pkgs;
     };
 
     rofi-config = import ./rofi-config {
