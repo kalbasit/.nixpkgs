@@ -18,7 +18,6 @@ stdenv.mkDerivation rec {
     cp -dr $src/config.d $out/userHome/.config/sway/config.d
 
     substitute $src/config $out/userHome/.config/sway/config \
-      --subst-var-by out_dir $out \
       --subst-var-by brightnessctl_bin ${pkgs.brightnessctl}/bin/brightnessctl \
       --subst-var-by i3lock_bin ${pkgs.i3lock}/bin/i3lock \
       --subst-var-by i3status_bin ${pkgs.i3status}/bin/i3status \
