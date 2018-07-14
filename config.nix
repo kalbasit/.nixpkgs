@@ -15,6 +15,10 @@
       inherit pkgs stdenv;
     };
 
+    i3status-config = import ./i3status-config {
+      inherit pkgs stdenv;
+    };
+
     git-config = import ./git-config {
       inherit (pkgs) stdenv nvim-config;
     };
@@ -84,6 +88,9 @@
         go
         dep
         swm
+
+        i3-config
+        i3status-config
 
         jq
 
