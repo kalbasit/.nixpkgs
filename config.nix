@@ -109,6 +109,8 @@
 
         powerline-fonts
 
+        rbrowser
+
         rofi-config
 
         surfingkeys-config

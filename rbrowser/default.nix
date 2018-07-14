@@ -8,8 +8,8 @@ stdenv.mkDerivation rec {
   src = ./.;
 
   installPhase = ''
-    install -D -m755 $src/bin/relay-browser $out/bin/relay-browser
-    substituteInPlace $out/bin/relay-browser \
+    install -D -m755 $src/bin/rbrowser $out/bin/rbrowser
+    substituteInPlace $out/bin/rbrowser \
       --subst-var-by chromium_bin ${pkgs.chromium}/bin/chromium \
       --subst-var-by firefox_bin ${pkgs.firefox}/bin/firefox \
       --subst-var-by rofi_bin ${pkgs.rofi}/bin/rofi \
