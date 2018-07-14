@@ -28,6 +28,10 @@
       inherit pkgs;
     };
 
+    rbrowser = import ./rbrowser {
+      inherit pkgs stdenv;
+    };
+
     rofi-config = import ./rofi-config {
       inherit (pkgs) stdenv rofi;
     };
@@ -37,7 +41,7 @@
     };
 
     sway-config = import ./sway-config {
-      inherit (pkgs) stdenv brightnessctl pulseaudio i3lock rofi termite libnotify slack zsh-config nvim-config i3status;
+      inherit pkgs stdenv;
     };
 
     swm = import ./swm {
