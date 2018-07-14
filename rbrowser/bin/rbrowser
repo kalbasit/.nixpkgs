@@ -26,10 +26,10 @@ source "@zsh_config_dir@/zsh/functions.zsh"
 
 function help()
 {
-	print_info "${log_depth}" "USAGE: relay-browser [options] <url>"
+	print_info "${log_depth}" "USAGE: rbrowser [options] <url>"
 	print_info "${log_depth}" "\t -h, --help                - this message"
 	print_info "${log_depth}" "\t -L, --log-depth           - change the depth of the log Default: ${log_depth}"
-	print_info "${log_depth}" "\t -p, --profile             - the profile to use. This is only relevant if a new session is going to be started"
+	print_info "${log_depth}" "\t -p, --profile             - the profile to use"
 	print_info "${log_depth}" "\t -b, --browser             - the browser to use. Default: chromium"
 }
 
