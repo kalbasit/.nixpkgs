@@ -191,9 +191,6 @@ if has("autocmd")
 	" see :help last-position-jump
 	au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
 				\| exe "normal! g`\"" | endif
-
-	" Delete certain buffers in order to not cluttering up the buffer list
-	au BufReadPost fugitive://* set bufhidden=delete
 endif
 
 " }}}
@@ -235,9 +232,6 @@ vmap ga <Plug>(EasyAlign)
 map \\ <Plug>(easymotion-prefix)
 
 " }}}
-"" EditorConfig {{{
-let g:EditorConfig_exclude_patterns = ['fugitive://.*']
-"" }}}
 "" FZF {{{
 
 " [Buffers] Jump to the existing window if possible

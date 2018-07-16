@@ -30,7 +30,6 @@ in with pkgs; neovim.override {
         "easy-align"
         "easymotion"
         "editorconfig-vim"
-        "fugitive"
         "fzf-vim"
         "fzfWrapper"
         "multiple-cursors"
@@ -58,6 +57,11 @@ in with pkgs; neovim.override {
         "vim-terraform"
         "vim-vissort"
         "vim-zoomwintab"
+
+        ## Denite
+
+        "denite"
+        "denite-git" "easygit"           # add support for working with Git
 
         ## DeoPlete completion support
         "deoplete-nvim"
