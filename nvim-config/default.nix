@@ -23,7 +23,6 @@ in with pkgs; neovim.override {
         "Gist"
         "Gundo"
         "LanguageClient-neovim"
-        "ack-vim"
         "ale"
         "auto-pairs"
         "caw"
@@ -58,6 +57,14 @@ in with pkgs; neovim.override {
         "vim-terraform"
         "vim-vissort"
         "vim-zoomwintab"
+
+        ## Denite
+
+        "denite"
+
+        ## Searching code
+
+        "unite"
 
         ## DeoPlete completion support
         "deoplete-nvim"

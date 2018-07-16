@@ -1,3 +1,5 @@
+" vim:foldmethod=marker:foldlevel=0:
+
 "" Settings{{{
 ""
 
@@ -71,6 +73,7 @@ set shada='20,<50,:20,%,n~/.config/nvim/_nviminfo
 " }}}
 "" NeoVim Settings{{{
 set mouse=  " I hate using the mouse for other than copying/pasting.
+" }}}
 "" Wild settings{{{
 ""
 
@@ -115,23 +118,11 @@ set listchars=""                  " Reset the listchars
 set listchars=tab:\ \             " a tab should display as "  "
 set listchars+=trail:.            " show trailing spaces as dots
 set listchars+=extends:>          " The character to show in the last column when wrap is
-" off and the line continues beyond the right of the screen
+                                  " off and the line continues beyond the right of the screen
 set listchars+=precedes:<         " The character to show in the last column when wrap is
 " off and the line continues beyond the left of the screen
 
 " }}}
-"" Ack{{{
-
-let g:ackprg = 'ag --vimgrep --smart-case'
-cnoreabbrev ag Ack
-cnoreabbrev aG Ack
-cnoreabbrev Ag Ack
-cnoreabbrev AG Ack
-
-map <Leader>/ :Ack<space>
-
-
-"" }}}
 "" Airline{{{
 
 " show tabline
@@ -212,6 +203,13 @@ let g:AutoPairsShortcutJump = ""
 autocmd BufEnter * EnableStripWhitespaceOnSave
 
 "}}}
+"" Denite{{{
+
+call denite#custom#var('file/rec', 'command',
+			\ ['pt', '--follow', '--nocolor', '--nogroup',
+			\  '-g=', ''])
+
+"" }}}
 "" Deoplete{{{
 
 " Run deoplete automatically

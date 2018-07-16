@@ -107,8 +107,9 @@
         most-config
 
         nvim-config
-        gocode
+        gocode            # support for plugin deoplete-go
         nodejs
+        platinum-searcher # support for plugin "denite"
 
         nix-index
 
