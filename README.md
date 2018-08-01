@@ -1,4 +1,4 @@
-# .nixpkgs
+# DEPRECATED: please go to https://github.com/kalbasit/system
 
 
 
